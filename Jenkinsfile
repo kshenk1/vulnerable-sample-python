@@ -19,13 +19,18 @@ pipeline {
       }
     }
     stage('Setup') { // Install any dependencies you need to perform testing
-      steps {
-        script {
-          sh """
-          pip install -r requirements.txt
-          """
+        agent {
+            docker {
+                image 'python:3.9.16' 
+            }
         }
-      }
+        steps {
+            script {
+                sh """
+                pip install -r requirements.txt
+                """
+            }
+        }
     }
     stage('Linting') { // Run pylint against your code
       steps {
