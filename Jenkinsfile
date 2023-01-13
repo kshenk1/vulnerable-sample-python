@@ -36,7 +36,6 @@ pipeline {
         }
       }
     }
-    /*
     stage('Unit Testing') { // Perform unit testing
       steps {
         script {
@@ -64,7 +63,6 @@ pipeline {
       }
     }
   }
-  */
   post {
     failure {
       script {
