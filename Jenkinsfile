@@ -5,14 +5,13 @@ pipeline {
     timestamps() // Append timestamps to each line
     timeout(time: 20, unit: 'MINUTES') // Set a timeout on the total execution time of the job
   }
-  agent {
+  agent any //{
     // Run this job within a Docker container built using Dockerfile.build
     // contained within your projects repository. This image should include
     // the core runtimes and dependencies required to run the job,
     // for example Python 3.x and NPM.
     // dockerfile { filename 'Dockerfile.build' }
-    any
-  }
+  //}
   stages {  // Define the individual processes, or stages, of your CI pipeline
     stage('Checkout') { // Checkout (git clone ...) the projects repository
       steps {
@@ -64,8 +63,8 @@ pipeline {
         """
       }
     }
-    */
   }
+  */
   post {
     failure {
       script {
