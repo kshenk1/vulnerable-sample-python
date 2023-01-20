@@ -3,18 +3,25 @@ pipeline {
     agent {
         kubernetes {
             yamlFile 'python-pod.yaml'
-
-            // Can also wrap individual steps:
-            // container('shell') {
-            //     sh 'hostname'
-            // }
+            label 'pybuild'
             defaultContainer 'pybuild'
         }
     }
     stages {
-        stage('Main') {
+        stage('Setup') {
             steps {
-                sh 'hostname'
+                sh """
+                pip install -r requirements.txt
+                """
+            }
+        }
+        stage('Linting') { // Run pylint against your code
+            steps {
+                script {
+                    sh """
+                    pylint **/*.py
+                    """
+                }
             }
         }
     }
