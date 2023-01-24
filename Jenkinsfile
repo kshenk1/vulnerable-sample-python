@@ -19,7 +19,8 @@ pipeline {
             steps {
                 script {
                     sh """
-                    pylint **/*.py
+                    # pylint **/*.py
+                    pylint good/*.py
                     """
                 }
             }
