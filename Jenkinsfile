@@ -3,7 +3,7 @@ pipeline {
     agent {
         kubernetes {
             yamlFile 'python-pod.yaml'
-            label 'pybuild'
+            label 'docker'
             defaultContainer 'pybuild'
         }
     }
