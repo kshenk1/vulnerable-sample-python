@@ -2,7 +2,6 @@
 pipeline {
     agent {
             label 'python'
-        }
     }
     stages {
         stage('Setup') {
