@@ -1,7 +1,10 @@
 // Uses Declarative syntax to run commands inside a container.
 pipeline {
     agent {
-            label 'python'
+        kubernetes {
+            yamlFile 'python-pod.yaml'
+            label 'docker'
+            defaultContainer 'pybuild'
         }
     }
     stages {
